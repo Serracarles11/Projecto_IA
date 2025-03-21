@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 
+=======
+body{
+    background-color: black;
+}
+.header{
+    width: 100%;
+    background-color: white;
+    height: 60px;
+}
+>>>>>>> Carles_rama
