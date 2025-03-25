@@ -1,8 +1,9 @@
 body{
-    background-color: black;
+    background-color: black!important;
 }
 .header{
     width: 100%;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     height: 60px;
+    top: 0;
 }
