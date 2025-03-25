@@ -1,7 +1,13 @@
-body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+body{
+    background-color: black!important;
     color: #fff;
     overflow-x: hidden;
+}
+.header{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    height: 60px;
+    top: 0;
 }
 
 .hero {
