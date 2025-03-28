@@ -27,6 +27,8 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let userAnswers = [];
+
 const elements = {
     question: document.getElementById('question'),
     options: document.getElementById('options'),
@@ -37,14 +39,35 @@ const elements = {
 
 function showAllAnswers() {
     const container = document.querySelector('.question-box');
-    container.innerHTML = '<h2 class="answers-title">Respuestas Correctas</h2>';
+    container.innerHTML = '<h2 class="answers-title">Resumen del Cuestionario</h2>';
     
     questions.forEach((q, index) => {
+        const userAnswerIndex = userAnswers[index];
+        const isCorrect = userAnswerIndex === q.correct;
+        const userAnswer = userAnswerIndex !== undefined ? q.options[userAnswerIndex] : "Sin respuesta";
+        const correctAnswer = q.options[q.correct];
+        
         const questionDiv = document.createElement('div');
         questionDiv.className = 'answer-item';
         questionDiv.innerHTML = `
-            <p class="question-text">${index + 1}. ${q.question}</p>
-            <p class="correct-answer">Respuesta correcta: ${q.options[q.correct]}</p>
+            <div class="question-header">
+                <span class="question-number">Pregunta ${index + 1}</span>
+                <span class="question-status ${isCorrect ? 'correct' : 'incorrect'}">
+                    ${isCorrect ? '✓ Correcta' : '✗ Incorrecta'}
+                </span>
+            </div>
+            <p class="question-text">${q.question}</p>
+            <div class="answer-details">
+                <div class="user-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                    🗳 Tu respuesta: ${userAnswer}
+                </div>
+                <div class="correct-answer">
+                    ✅ Correcta: ${correctAnswer}
+                </div>
+                <div class="explanation">
+                    📚 Explicación: ${q.explanation}
+                </div>
+            </div>
         `;
         container.appendChild(questionDiv);
     });
@@ -76,6 +99,7 @@ function showQuestion() {
 
 function checkAnswer(selectedIndex) {
     const q = questions[currentQuestion];
+    userAnswers[currentQuestion] = selectedIndex;
     const options = document.querySelectorAll('.option-btn');
     const selectedOption = q.options[selectedIndex];
     const correctOption = q.options[q.correct];
@@ -89,12 +113,12 @@ function checkAnswer(selectedIndex) {
         }
     });
 
-    // Mostrar respuesta seleccionada y explicación
     if(selectedIndex === q.correct) {
         elements.feedback.innerHTML = `
             <div class="feedback-correct">✅ Correcto!</div>
             <div class="feedback-explanation">${q.explanation}</div>
         `;
+        score++;
     } else {
         elements.feedback.innerHTML = `
             <div class="feedback-incorrect">❌ Tu respuesta: ${selectedOption}</div>
@@ -105,10 +129,7 @@ function checkAnswer(selectedIndex) {
 
     elements.feedback.style.display = 'block';
     elements.nextBtn.style.display = 'block';
-    
-    if(selectedIndex === q.correct) {
-        score++;
-    }
+    updateQuestionNumber();
 }
 
 function updateQuestionNumber() {
@@ -125,7 +146,6 @@ function nextQuestion() {
         elements.feedback.style.display = 'none';
         elements.nextBtn.style.display = 'none';
         
-        // Mostrar puntuación final
         elements.score.textContent = `Puntuación final: ${score}/${questions.length}`;
         elements.score.style.color = '#00ff88';
         elements.score.style.textShadow = '0 0 20px rgba(0, 255, 136, 0.5)';
