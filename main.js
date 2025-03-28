@@ -35,6 +35,27 @@ const elements = {
     score: document.getElementById('score')
 };
 
+function showAllAnswers() {
+    const container = document.querySelector('.question-box');
+    container.innerHTML = '<h2 class="answers-title">Respuestas Correctas</h2>';
+    
+    questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'answer-item';
+        questionDiv.innerHTML = `
+            <p class="question-text">${index + 1}. ${q.question}</p>
+            <p class="correct-answer">Respuesta correcta: ${q.options[q.correct]}</p>
+        `;
+        container.appendChild(questionDiv);
+    });
+
+    const closeBtn = document.createElement('button');
+    closeBtn.id = 'close-btn';
+    closeBtn.textContent = 'Cerrar';
+    closeBtn.onclick = () => location.reload();
+    container.appendChild(closeBtn);
+}
+
 function showQuestion() {
     const q = questions[currentQuestion];
     elements.question.textContent = q.question;
@@ -50,12 +71,14 @@ function showQuestion() {
     
     elements.feedback.style.display = 'none';
     elements.nextBtn.style.display = 'none';
-    updateScore();
+    updateQuestionNumber();
 }
 
 function checkAnswer(selectedIndex) {
     const q = questions[currentQuestion];
     const options = document.querySelectorAll('.option-btn');
+    const selectedOption = q.options[selectedIndex];
+    const correctOption = q.options[q.correct];
     
     options.forEach((option, index) => {
         option.disabled = true;
@@ -66,18 +89,30 @@ function checkAnswer(selectedIndex) {
         }
     });
 
-    elements.feedback.textContent = q.explanation;
+    // Mostrar respuesta seleccionada y explicación
+    if(selectedIndex === q.correct) {
+        elements.feedback.innerHTML = `
+            <div class="feedback-correct">✅ Correcto!</div>
+            <div class="feedback-explanation">${q.explanation}</div>
+        `;
+    } else {
+        elements.feedback.innerHTML = `
+            <div class="feedback-incorrect">❌ Tu respuesta: ${selectedOption}</div>
+            <div class="feedback-correct-answer">✅ Correcta: ${correctOption}</div>
+            <div class="feedback-explanation">📚 Explicación: ${q.explanation}</div>
+        `;
+    }
+
     elements.feedback.style.display = 'block';
     elements.nextBtn.style.display = 'block';
     
     if(selectedIndex === q.correct) {
         score++;
-        updateScore();
     }
 }
 
-function updateScore() {
-    elements.score.textContent = `PUNTAJE: ${score}/${questions.length}`;
+function updateQuestionNumber() {
+    elements.score.textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
 }
 
 function nextQuestion() {
@@ -89,9 +124,17 @@ function nextQuestion() {
         elements.options.innerHTML = '';
         elements.feedback.style.display = 'none';
         elements.nextBtn.style.display = 'none';
-        updateScore();
+        
+        // Mostrar puntuación final
+        elements.score.textContent = `Puntuación final: ${score}/${questions.length}`;
         elements.score.style.color = '#00ff88';
         elements.score.style.textShadow = '0 0 20px rgba(0, 255, 136, 0.5)';
+        
+        const viewAnswersBtn = document.createElement('button');
+        viewAnswersBtn.id = 'view-answers-btn';
+        viewAnswersBtn.textContent = 'Ver Respuestas';
+        viewAnswersBtn.onclick = showAllAnswers;
+        document.querySelector('.question-box').appendChild(viewAnswersBtn);
     }
 }
 
