@@ -2,13 +2,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".todo_header", {
     opacity: 0.7, // No lo hace desaparecer del todo, lo hace más elegante
-    backgroundColor: "rgba(128, 128, 128, 0.8)", // Un azul translúcido bonito
+    backgroundColor: "rgba(0, 0, 0, 0.8)", // Un azul translúcido bonito
+    borderbottom:0,
+
     duration: 2, // Hace la transición más lenta y fluida
     ease: "power2.out", // Suaviza la animación
     scrollTrigger: {
+        // markers:true,
+
         trigger: ".abajo",
         start: "top+=100px center",
-        end: "bottom center",
+        end: "bottom-=220px center",
         scrub: 2, // Hace que el cambio sea progresivo
     }
 });
@@ -21,7 +25,7 @@ gsap.to(".background_header",{
     scrollTrigger:{
         markers:true,
         trigger:".abajo",
-        start:"top+=315px center",
+        start:"top+=270px center",
         end:"bottom-=30px center",
         scrub:true
     }

@@ -42,7 +42,7 @@ section{
 }
 
 body {
-  background: #222;
+  background: #ffffff;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -63,7 +63,6 @@ body {
     width: 100%;
     height: 80px;
     visibility: hidden;
-    background-color: rgb(128, 128, 128);
     opacity: 0;
     margin-top: -80px;
 }
@@ -92,7 +91,7 @@ nav {
     }
   }
   a {
-    color: #FFF;
+    color: rgba(37, 57, 240 , 0.984);
     text-decoration: none;
     transition: all .3s;
     &:hover {
@@ -110,23 +109,25 @@ nav {
 }
 
 #nav-bg {
-  background: #222;
+  background: #222222;
   position: fixed;
   height: 5em;
   width: 100%;
-  top: 0;
+  top: 0; 
   z-index: 1;
 }
 
 header {
   position: relative;
-  background-color: #FD7777;
+  background-color: rgb(15,30,50);
+  border-bottom:1px solid rgb(100,150,255,0.3)!important;
   padding: 10em 0 8em;
   z-index: 2;
   h1 {
     font-size: 4em;
     text-transform: uppercase;
     text-align: center;
+    color: black;
   }
 }
 
