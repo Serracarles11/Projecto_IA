@@ -11,12 +11,14 @@ body{
 }
 
 .hero {
-    height: 100vh;
+    min-height: 100vh; /* Cambiamos height por min-height */
     display: flex;
     align-items: center;
     padding: 0 10%;
     position: relative;
+    overflow-y: auto; /* Añadimos scroll vertical si es necesario */
 }
+
 
 /* Cubo 3D */
 .cube-container {
@@ -68,9 +70,14 @@ body{
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    width: 100%; /* Aseguramos ancho completo */
+    flex-grow: 1; /* Permite que crezca verticalmente */
 }
 
 .question-box {
+    /* Añadimos margen inferior para espacio al crecer */
+    margin-bottom: 40px;
+    /* Mantenemos el resto de propiedades existentes */
     background: rgba(15, 30, 50, 0.95);
     border: 1px solid rgba(100, 150, 255, 0.3);
     border-radius: 12px;
@@ -381,4 +388,16 @@ body{
     border-radius: 8px;
     line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 20px 5%;
+        align-items: flex-start; /* Alinea contenido en la parte superior */
+    }
+    
+    .question-box {
+        margin-top: 40px; /* Espacio para la cabecera */
+    }
+}
+
 /* final cuestionario */

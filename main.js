@@ -22,6 +22,42 @@ const questions = [
         options: ["1. Regresión Logística", "2. SVM", "3. K-Means", "4. Redes Bayesianas"],
         correct: 2,
         explanation: "K-Means es un algoritmo de clustering que agrupa datos en 'k' grupos basados en similitudes."
+    },
+    {
+        question: "¿Qué técnica de IA se utiliza para crear sistemas que mejoran mediante experiencia?",
+        options: ["1. Aprendizaje Supervisado", "2. Aprendizaje por Refuerzo", "3. Procesamiento de Lenguaje Natural", "4. Visión por Computadora"],
+        correct: 1,
+        explanation: "El Aprendizaje por Refuerzo se basa en agentes que aprenden tomando acciones en un entorno para maximizar una recompensa acumulativa."
+    },
+    {
+        question: "¿Qué arquitectura de red es fundamental en los sistemas de reconocimiento de imágenes?",
+        options: ["1. Transformers", "2. CNN", "3. LSTM", "4. Autoencoders"],
+        correct: 1,
+        explanation: "Las CNN (Redes Neuronales Convolucionales) son especializadas en procesar datos con estructura de grid como imágenes."
+    },
+    {
+        question: "¿Qué algoritmo se usa para reducir la dimensionalidad de datos?",
+        options: ["1. Regresión Lineal", "2. PCA", "3. K-NN", "4. Árboles de Decisión"],
+        correct: 1,
+        explanation: "PCA (Análisis de Componentes Principales) es una técnica estadística para simplificar la complejidad en datos manteniendo su información clave."
+    },
+    {
+        question: "¿Qué tecnología permite a las máquinas entender el lenguaje humano?",
+        options: ["1. Computer Vision", "2. NLP", "3. Deep Reinforcement Learning", "4. Fuzzy Logic"],
+        correct: 1,
+        explanation: "NLP (Procesamiento de Lenguaje Natural) es la rama de la IA que se enfoca en la interacción entre computadoras y lenguaje humano."
+    },
+    {
+        question: "¿Qué ética debe considerarse prioritariamente en desarrollo de IA?",
+        options: ["1. Eficiencia algorítmica", "2. Privacidad de datos", "3. Velocidad de procesamiento", "4. Reducción de costes"],
+        correct: 1,
+        explanation: "La privacidad de datos es crucial para proteger información sensible y mantener la confianza en sistemas de IA."
+    },
+    {
+        question: "¿Qué técnica ayuda a prevenir el sobreajuste en modelos de ML?",
+        options: ["1. Aumento de datos", "2. Regularización", "3. Incrementar parámetros", "4. Reducir el dataset"],
+        correct: 1,
+        explanation: "La regularización (como L1/L2) ayuda a simplificar modelos y prevenir overfitting penalizando parámetros complejos."
     }
 ];
 
@@ -39,6 +75,12 @@ const elements = {
 
 function showAllAnswers() {
     const container = document.querySelector('.question-box');
+    // Hacer scroll suave hasta el inicio del cuestionario
+    window.scrollTo({
+        top: container.offsetTop - 100,
+        behavior: 'smooth'
+    });
+
     container.innerHTML = '<h2 class="answers-title">Resumen del Cuestionario</h2>';
     
     questions.forEach((q, index) => {
@@ -75,8 +117,18 @@ function showAllAnswers() {
     const closeBtn = document.createElement('button');
     closeBtn.id = 'close-btn';
     closeBtn.textContent = 'Cerrar';
-    closeBtn.onclick = () => location.reload();
+    closeBtn.onclick = () => {
+        // Scroll de vuelta al inicio al cerrar
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        setTimeout(() => location.reload(), 500);
+    };
     container.appendChild(closeBtn);
+
+    // Ajuste final para asegurar el espacio
+    container.style.minHeight = 'calc(100vh - 100px)';
 }
 
 function showQuestion() {
