@@ -1,3 +1,37 @@
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".todo_header", {
+    opacity: 0.7, // No lo hace desaparecer del todo, lo hace más elegante
+    backgroundColor: "rgba(0,0,0,0)", // Un azul translúcido bonito
+    duration: 2, // Hace la transición más lenta y fluida
+    ease: "power2.out", // Suaviza la animación
+    scrollTrigger: {
+        // markers:true,
+
+        trigger: ".abajo",
+        start: "top+=100px center",
+        end: "bottom center",
+        scrub: 2, // Hace que el cambio sea progresivo
+    }
+});
+
+gsap.to(".background_header",{
+    visibility: 'visible',
+    opacity:'1',
+    y: 80, 
+
+    scrollTrigger:{
+        markers:true,
+        trigger:".abajo",
+        start:"top+=315px center",
+        end:"bottom-=30px center",
+        scrub:true
+    }
+})
+
+
+// main.js de adrian_rama
+
 const questions = [
     {
         question: "¿Qué tipo de red neuronal es mejor para procesar secuencias temporales?",
