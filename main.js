@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".todo_header", {
     opacity: 0.7, // No lo hace desaparecer del todo, lo hace más elegante
-    backgroundColor: "rgba(128, 128, 128, 0.8)", // Un azul translúcido bonito
+    backgroundColor: "rgba(0,0,0,0)", // Un azul translúcido bonito
     duration: 2, // Hace la transición más lenta y fluida
     ease: "power2.out", // Suaviza la animación
     scrollTrigger: {
@@ -28,11 +28,7 @@ gsap.to(".background_header",{
         scrub:true
     }
 })
-ScrollSmoother.create({
-    smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-    effects: true, // looks for data-speed and data-lag attributes on elements
-    smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-  });
+
 
 
 // main.js de adrian_rama
@@ -251,3 +247,50 @@ function nextQuestion() {
 
 elements.nextBtn.addEventListener('click', nextQuestion);
 document.addEventListener('DOMContentLoaded', showQuestion);
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const wordList = document.querySelector('[data-looping-words-list]');
+    const words = Array.from(wordList.children);
+    const totalWords = words.length;
+    const wordHeight = 100 / totalWords; // Offset as a percentage
+    const edgeElement = document.querySelector('[data-looping-words-selector]');
+    let currentIndex = 0;
+    function updateEdgeWidth() {
+      const centerIndex = (currentIndex + 1) % totalWords;
+      const centerWord = words[centerIndex];
+      const centerWordWidth = centerWord.getBoundingClientRect().width;
+      const listWidth = wordList.getBoundingClientRect().width;
+      const percentageWidth = (centerWordWidth / listWidth) * 100;
+      gsap.to(edgeElement, {
+        width: `${percentageWidth}%`,
+        duration: 0.5,
+        ease: 'Expo.easeOut',
+      });
+    }
+    function moveWords() {
+      currentIndex++;
+      gsap.to(wordList, {
+        yPercent: -wordHeight * currentIndex,
+        duration: 1.2,
+        ease: 'elastic.out(1, 0.85)',
+        onStart: updateEdgeWidth,
+        onComplete: function() {
+          if (currentIndex >= totalWords - 3) {
+            wordList.appendChild(wordList.children[0]);
+            currentIndex--;
+            gsap.set(wordList, { yPercent: -wordHeight * currentIndex });
+            words.push(words.shift());
+          }
+        }
+      });
+    }
+    updateEdgeWidth();
+    gsap.timeline({ repeat: -1, delay: 1 })
+      .call(moveWords)
+      .to({}, { duration: 2 })
+      .repeat(-1);
+  });
+
+
