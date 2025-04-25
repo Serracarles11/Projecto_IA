@@ -14,7 +14,20 @@ gsap.to(".todo_header", {
         scrub: 2, // Hace que el cambio sea progresivo
     }
 });
+gsap.to(".cuadrado", {
+    opacity: 0.7, // No lo hace desaparecer del todo, lo hace más elegante
+    backgroundColor: "rgba(0,0,0,0)", // Un azul translúcido bonito
+    duration: 2, // Hace la transición más lenta y fluida
+    ease: "power2.out", // Suaviza la animación
+    scrollTrigger: {
+        // markers:true,
 
+        trigger: ".abajo",
+        start: "top+=100px center",
+        end: "bottom center",
+        scrub: 2, // Hace que el cambio sea progresivo
+    }
+});
 gsap.to(".background_header",{
     visibility: 'visible',
     opacity:'1',
@@ -50,12 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     function moveWords() {
+        
       currentIndex++;
       gsap.to(wordList, {
         yPercent: -wordHeight * currentIndex,
         duration: 1.2,
         ease: 'elastic.out(1, 0.85)',
-        onStart: updateEdgeWidth,
+        onStart: () => {
+            updateEdgeWidth();
+            updateWordStyles(); // 💡 Añadimos esta
+        },
         onComplete: function() {
           if (currentIndex >= totalWords - 3) {
             wordList.appendChild(wordList.children[0]);
@@ -67,13 +84,106 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     updateEdgeWidth();
+    function updateWordStyles() {
+        words.forEach((word, i) => {
+          const isCenter = i === (currentIndex + 1) % totalWords;
+          gsap.to(word, {
+            opacity: isCenter ? 1 : 0.5,
+            scale: isCenter ? 1.1 : 0.5,
+            duration: 0.5,
+            ease: 'power2.out'
+          });
+        });
+      }
+      
     gsap.timeline({ repeat: -1, delay: 1 })
       .call(moveWords)
       .to({}, { duration: 2 })
       .repeat(-1);
+      
   });
+  
 
 
+
+// FONDO DE PARTICULAS
+// const canvas = document.getElementById("canvas");
+//     const ctx = canvas.getContext("2d");
+
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+
+// window.addEventListener("resize", () => {
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+// });
+
+// const particlesArray = [];
+
+// const numParticles = 100;
+
+// class Particle {
+//     constructor() {
+//     this.x = Math.random() * canvas.width;
+//     this.y = Math.random() * canvas.height;
+//     this.size = Math.random() * 3 + 1;
+//     this.speedX = Math.random() * 1 - 0.5;
+//     this.speedY = Math.random() * 1 - 0.5;
+//     }
+
+//     update() {
+//     this.x += this.speedX;
+//     this.y += this.speedY;
+
+//     // Rebote en los bordes
+//     if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+//     if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+//     }
+
+//     draw() {
+//     ctx.fillStyle = "white";
+//     ctx.beginPath();
+//     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+//     ctx.fill();
+//     }
+// }
+
+// function initParticles() {
+//     for (let i = 0; i < numParticles; i++) {
+//     particlesArray.push(new Particle());
+//     }
+// }
+
+// function animate() {
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+//     for (let i = 0; i < particlesArray.length; i++) {
+//     const p = particlesArray[i];
+//     p.update();
+//     p.draw();
+
+//         // Dibujar líneas si están cerca
+//     for (let j = i + 1; j < particlesArray.length; j++) {
+//         const p2 = particlesArray[j];
+//         const dx = p.x - p2.x;
+//         const dy = p.y - p2.y;
+//         const distance = Math.sqrt(dx * dx + dy * dy);
+
+//         if (distance < 100) {
+//         ctx.beginPath();
+//         ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+//         ctx.moveTo(p.x, p.y);
+//         ctx.lineTo(p2.x, p2.y);
+//         ctx.stroke();
+//         }
+//     }
+//     }
+
+//     requestAnimationFrame(animate);
+// }
+// initParticles();
+// animate();
+//FINAL FONDO PARTICULAS
 
 
 // main.js de adrian_rama
