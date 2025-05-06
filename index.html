@@ -13,7 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -52,6 +54,449 @@
         </div>
     </section>
 
+
+    <!-- Sección: Beneficios Principales -->
+    <section class="section" id="benefits">
+        <div class="container">
+            <h2>Una Revolución en la Interfaz Cerebral</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">NeuroEcho AI no solo escucha lo que dices, sino lo que realmente piensas. Una tecnología que trasciende el lenguaje para conectar directamente con tu mente.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Procesamiento Neural Avanzado</h3>
+                    <p>Nuestros algoritmos propietarios detectan hasta los más sutiles patrones de actividad cerebral, interpretando intenciones que ni tú mismo sabías que tenías.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacidad por Diseño</h3>
+                    <p>Tu actividad cerebral nunca abandona tu dispositivo. Utilizamos encriptación neuronal cuántica de 4096 bits para proteger tus pensamientos más íntimos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Respuesta en Tiempo Real</h3>
+                    <p>NeuroEcho anticipa tus necesidades hasta 2.7 segundos antes de que seas consciente de ellas, brindando una experiencia que parece mágica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Tecnología Neural -->
+    <section class="section" id="technology" style="background: linear-gradient(to bottom, var(--bg-dark), #080816);">
+        <div class="container">
+            <h2>Tecnología Neural de Vanguardia</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Basada en investigaciones pioneras en neurociencia computacional y algoritmos de aprendizaje profundo de quinta generación.</p>
+            
+            <div class="brain-scan">
+                <div class="brain-activity">
+                    <div class="pulse" style="top: 30%; left: 25%;"></div>
+                    <div class="pulse" style="top: 50%; left: 60%; animation-delay: 0.5s;"></div>
+                    <div class="pulse" style="top: 70%; left: 40%; animation-delay: 1s;"></div>
+                    <div class="pulse" style="top: 40%; left: 80%; animation-delay: 1.5s;"></div>
+                </div>
+            </div>
+            
+            <div class="glass-card">
+                <h3 style="text-align: center;">Rendimiento Neural</h3>
+                <div style="display: flex; justify-content: center; margin: 20px 0;">
+                    <div style="width: 100%; max-width: 700px; height: 300px;">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const ctx = document.getElementById('performanceChart').getContext('2d');
+                        
+                        const gradientFill = ctx.createLinearGradient(0, 0, 0, 300);
+                        gradientFill.addColorStop(0, 'rgba(110, 68, 255, 0.6)');
+                        gradientFill.addColorStop(1, 'rgba(110, 68, 255, 0.1)');
+                        
+                        const chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['2022 Q1', '2022 Q2', '2022 Q3', '2022 Q4', '2023 Q1', '2023 Q2', '2023 Q3', '2023 Q4', '2024 Q1', '2024 Q2', '2024 Q3', '2024 Q4', '2025 Q1'],
+                                datasets: [{
+                                    label: 'Precisión en interpretación (Gen 1-5)',
+                                    data: [78.5, 81.2, 84.7, 87.3, 89.8, 92.1, 93.5, 95.2, 96.8, 97.7, 98.5, 99.2, 99.8],
+                                    borderColor: '#00f7ff',
+                                    borderWidth: 3,
+                                    pointBackgroundColor: '#00f7ff',
+                                    pointRadius: 4,
+                                    tension: 0.4,
+                                    fill: false
+                                }, {
+                                    label: 'Tiempo de respuesta (ms)',
+                                    data: [22, 19, 17, 14, 12, 10, 9, 7, 6, 5, 4, 3.5, 3],
+                                    borderColor: '#6e44ff',
+                                    borderWidth: 3,
+                                    pointBackgroundColor: '#6e44ff',
+                                    pointRadius: 4,
+                                    tension: 0.4,
+                                    fill: false,
+                                    yAxisID: 'y1'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    y: {
+                                        beginAtZero: false,
+                                        min: 75,
+                                        max: 100,
+                                        grid: {
+                                            color: 'rgba(255, 255, 255, 0.1)'
+                                        },
+                                        ticks: {
+                                            color: 'rgba(255, 255, 255, 0.7)'
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: 'Precisión (%)',
+                                            color: 'rgba(255, 255, 255, 0.9)'
+                                        }
+                                    },
+                                    y1: {
+                                        position: 'right',
+                                        beginAtZero: false,
+                                        min: 0,
+                                        max: 25,
+                                        grid: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            color: 'rgba(255, 255, 255, 0.7)'
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: 'Tiempo de respuesta (ms)',
+                                            color: 'rgba(255, 255, 255, 0.9)'
+                                        }
+                                    },
+                                    x: {
+                                        grid: {
+                                            color: 'rgba(255, 255, 255, 0.1)'
+                                        },
+                                        ticks: {
+                                            color: 'rgba(255, 255, 255, 0.7)'
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        labels: {
+                                            color: 'rgba(255, 255, 255, 0.9)'
+                                        }
+                                    },
+                                    tooltip: {
+                                        mode: 'index',
+                                        intersect: false,
+                                        backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Aplicaciones Principales -->
+    <section class="section" id="use-cases">
+        <div class="container">
+            <h2>Aplicaciones Revolucionarias</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Descubre cómo NeuroEcho AI está transformando la manera en que interactuamos con la tecnología y entre nosotros.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🧘</div>
+                    <h3>MindSync</h3>
+                    <p>Meditación guiada que se adapta en tiempo real a tus estados mentales. Detecta cuándo tu mente divaga y ajusta suavemente tu experiencia para lograr estados de concentración nunca antes experimentados.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛍️</div>
+                    <h3>AutoBuy</h3>
+                    <p>Elimina la paradoja de elección. AutoBuy analiza tus reacciones involuntarias ante productos y servicios para recomendarte exclusivamente aquello que realmente deseas, no lo que crees querer.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧑‍💼</div>
+                    <h3>EmpatIA</h3>
+                    <p>Transforma a ejecutivos en líderes empáticos mediante la detección de microemociones que escapan a la percepción humana. Mejora las dinámicas de equipo identificando tensiones subconscientes antes de que emerjan.</p>
+                </div>
+            </div>
+            
+            <div class="feature-card" style="margin-top: 40px;">
+                <div class="feature-icon">🌐</div>
+                <h3>NeuroPilot</h3>
+                <p>La primera interfaz cerebro-máquina completamente inmersiva que permite controlar dispositivos con solo pensar en ellos. Desde drones hasta sistemas domóticos, la tecnología responde a tus intenciones, no a tus comandos.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Testimonios -->
+    <section class="section" id="testimonials" style="background: linear-gradient(to bottom, #080816, var(--bg-dark));">
+        <div class="container">
+            <h2>Experiencias Transformadoras</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Nuestros usuarios beta están redefiniendo sus límites cognitivos con NeuroEcho AI.</p>
+            
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <p>"Antes tomaba decisiones basadas en lo que creía correcto. Con NeuroEcho, descubrí que mi intuición estaba enviándome señales que nunca pude interpretar conscientemente. Mis decisiones ahora fluyen con una claridad sorprendente."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Carla M.</h4>
+                            <p>Neuroeconomista</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Mi startup multiplicó su ROI en 2 meses después de implementar la tecnología NeuroPilot en nuestras reuniones estratégicas. El sistema detectó oportunidades de mercado que estábamos subconscientemente evitando por miedo al fracaso."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Dr. Enzo Leroux</h4>
+                            <p>CTO en MindNova</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Como atleta de élite, siempre busqué ese '110%' que solo existe en la mente. NeuroEcho identificó bloqueos mentales que ni mi entrenador pudo detectar. Rompí mi récord personal tres veces en un mes."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Maya Svensson</h4>
+                            <p>Medallista Olímpica</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Socios Científicos -->
+    <section class="section" id="partners">
+        <div class="container">
+            <h2>Respaldado por la Élite Científica</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Colaboramos con las instituciones de investigación más prestigiosas del mundo.</p>
+            
+            <div class="partners">
+                <div class="partner">
+                    <svg width="120" height="60" viewBox="0 0 120 60">
+                        <rect width="120" height="60" fill="none" rx="5" />
+                        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#b3b3cc" font-family="Arial" font-size="12">NeuroLabs</text>
+                    </svg>
+                </div>
+                <div class="partner">
+                    <svg width="120" height="60" viewBox="0 0 120 60">
+                        <rect width="120" height="60" fill="none" rx="5" />
+                        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#b3b3cc" font-family="Arial" font-size="12">CogniTech</text>
+                    </svg>
+                </div>
+                <div class="partner">
+                    <svg width="120" height="60" viewBox="0 0 120 60">
+                        <rect width="120" height="60" fill="none" rx="5" />
+                        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#b3b3cc" font-family="Arial" font-size="12">Instituto Synaptik</text>
+                    </svg>
+                </div>
+                <div class="partner">
+                    <svg width="120" height="60" viewBox="0 0 120 60">
+                        <rect width="120" height="60" fill="none" rx="5" />
+                        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#b3b3cc" font-family="Arial" font-size="12">BrainWave Research</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Preguntas Frecuentes -->
+    <section class="section" id="faq">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Respondemos tus dudas sobre esta tecnología revolucionaria.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <p>¿Es esto real?</p>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Estamos en fase beta avanzada. Algunas funcionalidades están limitadas a nuestra cohorte de usuarios pioneros y podrían no estar disponibles en tu región. Nuestra tecnología ha superado todas las pruebas de laboratorio y actualmente se encuentra en fase de implementación selectiva.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <p>¿Esto es legal?</p>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cumplimos rigurosamente con los estándares éticos de la Federación Internacional de Neuroética y el Consorcio Global de Derechos Cognitivos. Todos nuestros procesos han sido certificados por comités independientes de bioética digital.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <p>¿Puede NeuroEcho AI leer mis pensamientos íntimos?</p>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>NeuroEcho no "lee pensamientos" en el sentido tradicional. Nuestro sistema detecta patrones de actividad neuronal y los interpreta mediante algoritmos probabilísticos. No podemos acceder a contenidos específicos de pensamiento, solo a tendencias, preferencias y estados emocionales generales. Además, nuestro sistema de privacidad por defecto te permite bloquear categorías completas de análisis.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <p>¿Qué hardware necesito para usar NeuroEcho?</p>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El wearable NeuroEcho™ es un dispositivo no invasivo del tamaño de unos auriculares estándar. Utiliza sensores cuánticos de campo cercano que no requieren contacto directo con el cuero cabelludo. Es compatible con la mayoría de dispositivos inteligentes mediante nuestra aplicación propietaria.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <p>¿Existe algún riesgo para mi salud?</p>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>NeuroEcho utiliza tecnología pasiva no ionizante que ha sido certificada como segura por múltiples agencias reguladoras internacionales. Nuestros dispositivos emiten menos radiación que un smartphone estándar y han pasado por rigurosas pruebas de seguridad a largo plazo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Avances Científicos -->
+    <section class="section" id="science" style="background: linear-gradient(to bottom, var(--bg-dark), #080816);">
+        <div class="container">
+            <h2>Interfaz Neural Cuántica</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Basado en descubrimientos revolucionarios en el campo de la computación neuromórfica y la mecánica cuántica aplicada.</p>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; margin-bottom: 60px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Sensor Quantum Brainwave™</h3>
+                    <p>Utilizando tecnología de campo cuántico cercano, nuestros sensores pueden detectar fluctuaciones en la actividad sináptica hasta 50 veces más sutiles que los electroencefalogramas tradicionales, sin necesidad de contacto directo.</p>
+                    <ul style="color: var(--text-gray); list-style-type: none; padding-left: 0;">
+                        <li style="margin-bottom: 10px;">✓ Sensibilidad de 0.002 microvolts</li>
+                        <li style="margin-bottom: 10px;">✓ Inmunidad al ruido electromagnético ambiental</li>
+                        <li style="margin-bottom: 10px;">✓ Calibración automática personalizada</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Algoritmos SynapLink™</h3>
+                    <p>Nuestro sistema propietario de machine learning utiliza arquitecturas neurales recursivas de sexta generación para interpretar patrones de actividad cerebral que anteriormente se consideraban indescriptibles.</p>
+                    <ul style="color: var(--text-gray); list-style-type: none; padding-left: 0;">
+                        <li style="margin-bottom: 10px;">✓ Adaptación continua a tu patrón neural único</li>
+                        <li style="margin-bottom: 10px;">✓ Detección de microintenciones subliminales</li>
+                        <li style="margin-bottom: 10px;">✓ Modelo predictivo con precisión del 99.8%</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="glass-card">
+                <h3 style="text-align: center;">Actividad Cerebral con NeuroEcho</h3>
+                <div style="display: flex; justify-content: center; margin: 40px 0;">
+                    <div style="width: 100%; max-width: 700px; height: 300px;">
+                        <canvas id="brainActivityChart"></canvas>
+                    </div>
+                </div>
+            
+                <div style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: var(--text-gray);">
+                    Visualización en tiempo real de ondas cerebrales optimizadas con tecnología NeuroEcho™
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Casos de Éxito -->
+    <section class="section" id="success-stories">
+        <div class="container">
+            <h2>Transformando Realidades</h2>
+            <p class="subtitle" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Organizaciones pioneras están redefiniendo sus industrias con NeuroEcho AI.</p>
+            
+            <div class="glass-card" style="margin-bottom: 60px;">
+                <h3 style="text-align: center;">Impacto por Industria</h3>
+                <div style="display: flex; justify-content: center; margin: 20px 0;">
+                    <div style="width: 100%; max-width: 700px; height: 350px;">
+                        <canvas id="industryChart"></canvas>
+                    </div>
+                </div>
+              
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; text-align: center;">
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 5px;">Salud</h4>
+                        <p style="font-size: 0.9rem; margin: 0;">+32% adherencia a tratamientos</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 5px;">Educación</h4>
+                        <p style="font-size: 0.9rem; margin: 0;">+28% retención de conocimiento</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #ff4482; margin-bottom: 5px;">Finanzas</h4>
+                        <p style="font-size: 0.9rem; margin: 0;">+18.7% ROI anualizado</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn" style="background: rgba(255, 255, 255, 0.1); color: var(--accent); border: 1px solid var(--accent);">Ver Todos los Casos de Éxito</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Programa de Acceso Anticipado -->
+    <section class="section" id="early-access" style="background: linear-gradient(135deg, rgba(44, 10, 103, 0.8), rgba(110, 68, 255, 0.4));">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2>Programa de Pioneros Neurales</h2>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 40px;">Solo aceptamos un número limitado de usuarios visionarios para nuestra fase beta. Los seleccionados tendrán acceso anticipado a tecnología que cambiará el paradigma de la interacción humano-máquina.</p>
+                
+                <div style="width: 100%; max-width: 800px; margin: 0 auto 40px;">
+                <canvas id="userTypeChart"></canvas>
+             
+            </div>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 40px;">
+                <div style="flex: 1; min-width: 200px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                    <h3 style="color: var(--accent); margin-bottom: 5px; font-size: 1.2rem;">Ejecutivos</h3>
+                    <div style="font-size: 2rem; font-weight: bold; color: #00f7ff; margin-bottom: 5px;">+42%</div>
+                    <div style="font-size: 0.9rem; color: var(--text-gray);">Mejora en toma de decisiones estratégicas</div>
+                </div>
+                
+                <div style="flex: 1; min-width: 200px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                    <h3 style="color: var(--accent); margin-bottom: 5px; font-size: 1;" </h3>
+                
+                <a href="#" class="btn" style="padding: 15px 40px; font-size: 1.1rem;">Solicitar Acceso Pionero</a>
+                <p style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); margin-top: 20px;">Proceso de selección riguroso. Aceptamos aproximadamente el 12% de las solicitudes.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección: Call to Action -->
+    <section class="section" id="cta">
+        <div class="container">
+            <div class="cta-section">
+                <h2>El Futuro de la Cognición Humana</h2>
+                <p style="color: rgba(255, 255, 255, 0.8); max-width: 700px; margin: 0 auto 30px;">Únete a la lista de espera para ser uno de los primeros en experimentar el salto evolutivo en la interfaz humano-máquina.</p>
+                <a href="#" class="btn">Solicitar Acceso Anticipado</a>
+                <p style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); margin-top: 20px;">Plazas limitadas. Actualmente solo aceptamos 500 usuarios nuevos por mes.</p>
+            </div>
+        </div>
+    </section>
+    
+
     <section class="hero">
         <div class="quiz-container">
             <div class="question-box">
@@ -63,6 +508,73 @@
             </div>
         </div>
     </section>
+
+     <!-- Footer -->
+     <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>NeuroEcho AI</h4>
+                    <p>Tu subconsciente, ahora optimizado.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Producto</h4>
+                    <ul>
+                        <li><a href="#">Características</a></li>
+                        <li><a href="#">Aplicaciones</a></li>
+                        <li><a href="#">Investigación</a></li>
+                        <li><a href="#">Programa Beta</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">Papers Científicos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Términos de Servicio</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Política de Datos Cerebrales</a></li>
+                        <li><a href="#">Cumplimiento NICF</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 NeuroEcho AI Corp. Todos los derechos reservados. "Tu mente ya lo sabe" es una marca registrada.</p>
+                <p style="font-size: 0.8rem; margin-top: 10px;">NeuroEcho AI no está destinado a diagnosticar, tratar, curar o prevenir ninguna enfermedad. NICF Reg. #2875-NE39.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="main.js"></script>
 </body>
 </html>

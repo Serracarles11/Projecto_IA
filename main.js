@@ -32,6 +32,311 @@ gsap.to(".background_header",{
 
 // main.js de adrian_rama
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Datos para simular actividad cerebral
+    function generateWaveData(points, amplitude, frequency, phase, noise) {
+        let data = [];
+        for (let i = 0; i < points; i++) {
+            let x = i / points;
+            let y = amplitude * Math.sin(2 * Math.PI * frequency * x + phase) + 
+                    (Math.random() * noise - noise/2);
+            data.push({x: x, y: y});
+        }
+        return data;
+    }
+    
+    const ctxBrain = document.getElementById('brainActivityChart').getContext('2d');
+    
+    // Gradiente para el área bajo la línea
+    const gradientFill1 = ctxBrain.createLinearGradient(0, 0, 0, 300);
+    gradientFill1.addColorStop(0, 'rgba(0, 247, 255, 0.4)');
+    gradientFill1.addColorStop(1, 'rgba(0, 247, 255, 0.0)');
+    
+    const gradientFill2 = ctxBrain.createLinearGradient(0, 0, 0, 300);
+    gradientFill2.addColorStop(0, 'rgba(110, 68, 255, 0.4)');
+    gradientFill2.addColorStop(1, 'rgba(110, 68, 255, 0.0)');
+    
+    // Configurar el gráfico de actividad cerebral
+    const brainChart = new Chart(ctxBrain, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Sin NeuroEcho',
+                data: generateWaveData(100, 30, 1, 0, 15),
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+                borderWidth: 2,
+                pointRadius: 0,
+                fill: false,
+                tension: 0.4
+            }, {
+                label: 'Ondas Alpha',
+                data: generateWaveData(100, 40, 2, 1, 5),
+                borderColor: '#00f7ff',
+                borderWidth: 3,
+                backgroundColor: gradientFill1,
+                pointRadius: 0,
+                fill: true,
+                tension: 0.4
+            }, {
+                label: 'Ondas Theta',
+                data: generateWaveData(100, 25, 3, 2, 3),
+                borderColor: '#6e44ff',
+                borderWidth: 3,
+                backgroundColor: gradientFill2,
+                pointRadius: 0,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'linear',
+                    display: false
+                },
+                y: {
+                    display: false,
+                    min: -50,
+                    max: 50
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: 'rgba(255, 255, 255, 0.9)',
+                        boxWidth: 15,
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                annotation: {
+                    annotations: {
+                        line1: {
+                            type: 'line',
+                            yMin: 0,
+                            yMax: 0,
+                            borderColor: 'rgba(255, 255, 255, 0.2)',
+                            borderWidth: 1,
+                            borderDash: [5, 5]
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 0
+            }
+        }
+    });
+    
+    // Animación para simular actividad cerebral en tiempo real
+    function updateChart() {
+        brainChart.data.datasets[0].data = generateWaveData(100, 30, 1, Date.now()/1000, 15);
+        brainChart.data.datasets[1].data = generateWaveData(100, 40, 2, Date.now()/800, 5);
+        brainChart.data.datasets[2].data = generateWaveData(100, 25, 3, Date.now()/600, 3);
+        brainChart.update();
+        requestAnimationFrame(updateChart);
+    }
+    
+    requestAnimationFrame(updateChart);
+});
+
+
+// grafica 2
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const ctxIndustry = document.getElementById('industryChart').getContext('2d');
+    
+    const industryChart = new Chart(ctxIndustry, {
+        type: 'radar',
+        data: {
+            labels: ['Mejora en comunicación', 'Reducción de errores', 'Toma de decisiones', 'Optimización de procesos', 'Satisfacción de usuarios', 'Retorno de inversión'],
+            datasets: [{
+                label: 'Sector Salud',
+                data: [47, 36, 29, 41, 38, 32],
+                backgroundColor: 'rgba(0, 247, 255, 0.2)',
+                borderColor: 'rgba(0, 247, 255, 0.8)',
+                pointBackgroundColor: 'rgba(0, 247, 255, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(0, 247, 255, 1)'
+            }, {
+                label: 'Educación',
+                data: [32, 28, 39, 35, 43, 30],
+                backgroundColor: 'rgba(110, 68, 255, 0.2)',
+                borderColor: 'rgba(110, 68, 255, 0.8)',
+                pointBackgroundColor: 'rgba(110, 68, 255, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(110, 68, 255, 1)'
+            }, {
+                label: 'Finanzas',
+                data: [29, 42, 48, 34, 27, 39],
+                backgroundColor: 'rgba(255, 68, 130, 0.2)',
+                borderColor: 'rgba(255, 68, 130, 0.8)',
+                pointBackgroundColor: 'rgba(255, 68, 130, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(255, 68, 130, 1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            },
+            scales: {
+                r: {
+                    angleLines: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    pointLabels: {
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.5)',
+                        backdropColor: 'transparent',
+                        font: {
+                            size: 10
+                        }
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 50
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: 'rgba(255, 255, 255, 0.9)',
+                        padding: 20,
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + '% de mejora';
+                        }
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                },
+                title: {
+                    display: true,
+                    text: 'Porcentaje de mejora por área y sector',
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    font: {
+                        size: 16
+                    },
+                    padding: {
+                        bottom: 20
+                    }
+                }
+            }
+        }
+    });
+});
+
+
+// grafica 3
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const ctxUser = document.getElementById('userTypeChart').getContext('2d');
+    
+    const userChart = new Chart(ctxUser, {
+        type: 'doughnut',
+        data: {
+            labels: ['Ejecutivos', 'Creativos', 'Investigadores', 'Médicos', 'Educadores'],
+            datasets: [{
+                data: [35, 28, 22, 10, 5],
+                backgroundColor: [
+                    '#00f7ff',
+                    '#6e44ff',
+                    '#ff4482',
+                    '#ffb344',
+                    '#44ff9a'
+                ],
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                borderWidth: 2,
+                hoverOffset: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: 'rgba(255, 255, 255, 0.9)',
+                        padding: 20,
+                        font: {
+                            size: 14
+                        },
+                        generateLabels: function(chart) {
+                            const datasets = chart.data.datasets;
+                            return chart.data.labels.map(function(label, i) {
+                                const meta = chart.getDatasetMeta(0);
+                                const style = meta.controller.getStyle(i);
+                                
+                                return {
+                                    text: label + ' (' + datasets[0].data[i] + '%)',
+                                    fillStyle: datasets[0].backgroundColor[i],
+                                    strokeStyle: datasets[0].borderColor,
+                                    lineWidth: datasets[0].borderWidth,
+                                    hidden: false,
+                                    index: i
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw + '% de usuarios pioneros';
+                        }
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                },
+                title: {
+                    display: true,
+                    text: 'Distribución de Usuarios Pioneros por Perfil',
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    font: {
+                        size: 16
+                    },
+                    padding: {
+                        bottom: 20
+                    }
+                }
+            }
+        }
+    });
+});
+
+
+
 const questions = [
     {
         question: "¿Qué tipo de red neuronal es mejor para procesar secuencias temporales?",
