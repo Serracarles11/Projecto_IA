@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const wordHeight = 100 / totalWords; // Offset as a percentage
     const edgeElement = document.querySelector('[data-looping-words-selector]');
     let currentIndex = 0;
+  
     function updateEdgeWidth() {
       const centerIndex = (currentIndex + 1) % totalWords;
       const centerWord = words[centerIndex];
@@ -62,16 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: 'Expo.easeOut',
       });
     }
+  
     function moveWords() {
-        
       currentIndex++;
       gsap.to(wordList, {
         yPercent: -wordHeight * currentIndex,
         duration: 1.2,
         ease: 'elastic.out(1, 0.85)',
         onStart: () => {
-            updateEdgeWidth();
-            updateWordStyles(); // 💡 Añadimos esta
+          updateEdgeWidth();
+          updateWordStyles(); // 💡 Añadimos esta
         },
         onComplete: function() {
           if (currentIndex >= totalWords - 3) {
@@ -83,24 +84,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
-    updateEdgeWidth();
+  
     function updateWordStyles() {
-        words.forEach((word, i) => {
-          const isCenter = i === (currentIndex + 1) % totalWords;
-          gsap.to(word, {
-            opacity: isCenter ? 1 : 0.5,
-            scale: isCenter ? 1.1 : 0.5,
-            duration: 0.5,
-            ease: 'power2.out'
-          });
+      words.forEach((word, i) => {
+        const isCenter = i === (currentIndex + 1) % totalWords;
+        gsap.to(word, {
+          opacity: isCenter ? 1 : 0.5,
+          scale: isCenter ? 1.1 : 0.5,
+          duration: 0.5,
+          ease: 'power2.out'
         });
-      }
-      
-    gsap.timeline({ repeat: -1, delay: 1 })
-      .call(moveWords)
-      .to({}, { duration: 2 })
-      .repeat(-1);
-      
+      });
+    }
+  
+    // Iniciar la animación al cargar la página
+    gsap.timeline()
+      .call(moveWords)  // Llama a la función que mueve las palabras
+      .to({}, { duration: 2 })  // Añadir una pequeña pausa
+      .repeat(-1);  // Esto repetirá la animación indefinidamente si lo deseas
   });
   
 
