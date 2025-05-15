@@ -14,7 +14,20 @@ gsap.to(".todo_header", {
         scrub: 2, // Hace que el cambio sea progresivo
     }
 });
+gsap.to(".cuadrado", {
+    opacity: 0.7, // No lo hace desaparecer del todo, lo hace más elegante
+    backgroundColor: "rgba(0,0,0,0)", // Un azul translúcido bonito
+    duration: 2, // Hace la transición más lenta y fluida
+    ease: "power2.out", // Suaviza la animación
+    scrollTrigger: {
+        // markers:true,
 
+        trigger: ".abajo",
+        start: "top+=100px center",
+        end: "bottom center",
+        scrub: 2, // Hace que el cambio sea progresivo
+    }
+});
 gsap.to(".background_header",{
     visibility: 'visible',
     opacity:'1',
@@ -28,6 +41,70 @@ gsap.to(".background_header",{
         scrub:true
     }
 })
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const wordList = document.querySelector('[data-looping-words-list]');
+    const words = Array.from(wordList.children);
+    const totalWords = words.length;
+    const wordHeight = 100 / totalWords; // Offset as a percentage
+    const edgeElement = document.querySelector('[data-looping-words-selector]');
+    let currentIndex = 0;
+    function updateEdgeWidth() {
+      const centerIndex = (currentIndex + 1) % totalWords;
+      const centerWord = words[centerIndex];
+      const centerWordWidth = centerWord.getBoundingClientRect().width;
+      const listWidth = wordList.getBoundingClientRect().width;
+      const percentageWidth = (centerWordWidth / listWidth) * 100;
+      gsap.to(edgeElement, {
+        width: `${percentageWidth}%`,
+        duration: 0.5,
+        ease: 'Expo.easeOut',
+      });
+    }
+    function moveWords() {
+        
+      currentIndex++;
+      gsap.to(wordList, {
+        yPercent: -wordHeight * currentIndex,
+        duration: 1.2,
+        ease: 'elastic.out(1, 0.85)',
+        onStart: () => {
+            updateEdgeWidth();
+            updateWordStyles(); // 💡 Añadimos esta
+        },
+        onComplete: function() {
+          if (currentIndex >= totalWords - 3) {
+            wordList.appendChild(wordList.children[0]);
+            currentIndex--;
+            gsap.set(wordList, { yPercent: -wordHeight * currentIndex });
+            words.push(words.shift());
+          }
+        }
+      });
+    }
+    updateEdgeWidth();
+    function updateWordStyles() {
+        words.forEach((word, i) => {
+          const isCenter = i === (currentIndex + 1) % totalWords;
+          gsap.to(word, {
+            opacity: isCenter ? 1 : 0.5,
+            scale: isCenter ? 1.1 : 0.5,
+            duration: 0.5,
+            ease: 'power2.out'
+          });
+        });
+      }
+      
+    gsap.timeline({ repeat: -1, delay: 1 })
+      .call(moveWords)
+      .to({}, { duration: 2 })
+      .repeat(-1);
+      
+  });
+
+
+
 
 
 // main.js de adrian_rama

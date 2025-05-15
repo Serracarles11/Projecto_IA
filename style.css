@@ -5,15 +5,27 @@ body{
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    background-color: var(--bg-dark);
 }
 .header{
     width: 100%;
     background-color: rgb(255, 255, 255);
-    height: 60px;
+    height: 10px;
     top: 0;
     align-items: center;
+    overflow: hidden;
 }
+/* .canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
+} */
+
+/* ESTILOS PARA EL HEADER */
+
+
+
 
 img{
     aspect-ratio: 1;
@@ -45,14 +57,26 @@ section{
     box-sizing: border-box;
   }
 }
+.cuadrado{
+  position: absolute;
+  top: 340px;
+  right: 547px;
+  width: 873px;
+  height: 160px;
+  background-color: rgb(68, 125, 151);
+  z-index: 1000;
+}
 
 .todo_header{
     opacity: 1;
+    height: 500px;
+    overflow:hidden ;
+  justify-content: center;
 }
 
 .texto_header {
   max-width: 60em;
-  min-width: 45em;
+  min-width: 85em;
   margin: 0 auto;
   padding: 0 2em;
 
@@ -61,7 +85,7 @@ section{
     width: 100%;
     height: 80px;
     visibility: hidden;
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.856);
     opacity: 0;
     margin-top: -80px;
 }
@@ -90,7 +114,7 @@ nav {
     }
   }
   a {
-    color: rgba(37, 57, 240 , 0.984);
+    color: rgb(68, 125, 151);
     text-decoration: none;
     transition: all .3s;
     &:hover {
@@ -108,7 +132,7 @@ nav {
 }
 
 #nav-bg {
-  background: #222222;
+  background: #000000;
   position: fixed;
   height: 5em;
   width: 100%;
@@ -118,16 +142,15 @@ nav {
 
 header {
   position: relative;
-  background-color: rgb(49, 93, 151);
-  border-bottom:1px solid rgb(100,150,255,0.3)!important;
+  background-color: rgb(68, 125, 151);
+  border-bottom:3px solid rgba(39, 70, 85, 0.3)!important;
   padding: 10em 0 8em;
   z-index: 2;
   h1 {
     font-size: 4em;
     text-transform: uppercase;
     text-align: center;
-    color: black;
-    font-family: Orbitron;
+    color: rgb(9, 9, 54);
   }
 }
 
@@ -151,6 +174,7 @@ header {
     position: relative;
     overflow-y: auto; /* Añadimos scroll vertical si es necesario */
 }
+
 
 
 /* Cubo 3D */
@@ -849,3 +873,124 @@ footer {
 .social-link:hover {
     background: var(--primary);
 }
+
+/* cosas de las palabras */
+
+.cloneable {
+    padding: var(--container-padding);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+  }
+  
+  .looping-words {
+    bottom: 30%;
+    padding-left: .1em;
+    padding-right: .1em;
+    font-size: 5vw;
+    line-height: .9;
+    position: relative;
+    width: 567px;
+    height: 28%;
+  }
+  
+  
+  .looping-words__list {
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-flow: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: PP Neue Corp, sans-serif;
+    font-weight: 700;
+    list-style: none;
+    display: flex;
+    position: relative;
+  }
+  
+  .looping-words__list.is--primary {
+    color: var(--color-primary);
+  }
+  
+  .looping-words__list.is--gray {
+    color: var(--color-neutral-500);
+  }
+  
+  .looping-words__fade {
+    background-image: linear-gradient(180deg, var(--color-neutral-300) 5%, transparent 40%, transparent 60%, var(--color-neutral-300) 95%);
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .looping-words__fade.is--radial {
+    background-image: radial-gradient(circle closest-side at 50% 50%, transparent 64%, var(--color-neutral-400) 93%);
+    width: 140%;
+    display: block;
+    left: -20%;
+  }
+  
+  .looping-words__selector {
+    pointer-events: none;
+    width: 100%;
+    height: .9em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .looping-words__edge {
+    border-top: .035em solid var(--color-primary);
+    border-left: .035em solid var(--color-primary);
+    width: .125em;
+    height: .125em;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .looping-words__edge.is--2 {
+    left: auto;
+    right: 0;
+    transform: rotate(90deg);
+  }
+  
+  .looping-words__edge.is--3 {
+    inset: auto 0 0 auto;
+    transform: rotate(180deg);
+  }
+  
+  .looping-words__edge.is--4 {
+    top: auto;
+    bottom: 0;
+    transform: rotate(270deg);
+  }
+  
+  .looping-words__containers {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .looping-words__p {
+    margin: 0;
+  }
+  
+  @font-face {
+    font-family: 'PP Neue Corp';
+    src: url('https://cdn.prod.website-files.com/6717aac16c9ea22eeef1e79e/6717de2d56e40b921572d2d9_PPNeueCorp-TightUltrabold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  
