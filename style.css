@@ -886,7 +886,7 @@ footer {
   }
   
   .looping-words {
-    bottom: 30%;
+    margin-bottom: 36%;    
     padding-left: .1em;
     padding-right: .1em;
     font-size: 5vw;

@@ -37,7 +37,7 @@ gsap.to(".background_header",{
         markers:true,
         trigger:".abajo",
         start:"top+=315px center",
-        end:"bottom-=30px center",
+        end:"bottom-=30px top",
         scrub:true
     }
 })
