@@ -915,7 +915,7 @@ footer {
   }
   
   .looping-words {
-    margin-bottom: 36%;    
+    margin-bottom: -20%;
     padding-left: .1em;
     padding-right: .1em;
     font-size: 5vw;
@@ -1034,4 +1034,5 @@ footer {
   
 .contenido-izquierda{
     text-align: center;
+    justify-content: center;
 }
