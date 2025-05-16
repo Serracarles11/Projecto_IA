@@ -166,21 +166,14 @@ header {
   }
 }
 
-.hero {
-    min-height: 100vh; /* Cambiamos height por min-height */
-    display: flex;
-    align-items: center;
-    padding: 0 10%;
-    position: relative;
-    overflow-y: auto; /* Añadimos scroll vertical si es necesario */
-}
+
 
 
 
 /* Cubo 3D */
 .cube-container {
     position: absolute;
-    right: 10%;
+    right: 20%;
     width: 300px;
     height: 300px;
     perspective: 1000px;
@@ -220,8 +213,13 @@ header {
     from { transform: rotateY(0deg) rotateX(0deg); }
     to { transform: rotateY(360deg) rotateX(720deg); }
 }
-/* fin de cubo */
 
+/* neuroEcho IA */
+/* fin de cubo */
+.cuadrado_derecha{
+    width: 50%;
+    height: 100%;
+}
 /* inicio el cuestionario */
 .quiz-container {
     max-width: 800px;
@@ -545,15 +543,36 @@ header {
     border-radius: 8px;
     line-height: 1.6;
 }
-
+.contenido-izquierda,
+.contenido-derecha {
+    flex: 1;
+}
+.contenido-derecha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+    gap: 40px; /* Espacio entre columnas */
+}
 @media (max-width: 768px) {
     .hero {
+        flex-direction: column;
         padding: 20px 5%;
-        align-items: flex-start; /* Alinea contenido en la parte superior */
+        align-items: flex-start;
     }
-    
-    .question-box {
-        margin-top: 40px; /* Espacio para la cabecera */
+
+    .contenido-derecha {
+        margin-top: 40px;
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -992,5 +1011,17 @@ footer {
     font-style: normal;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'Karma';
+    src: url('fonts/Karma Future.otf') format('opentype'); /* Es .otf, no .ttf */
+  }
   
+  .texto_cubo {
+    color: rgb(68, 125, 151);
+    font-size: clamp(2rem, 5vw + 1rem, 7em);
+    font-family: 'Karma', sans-serif; /* Elimina la coma extra y añade fuente de respaldo */
+  }
   
+.contenido-izquierda{
+    text-align: center;
+}

@@ -6,7 +6,6 @@ gsap.to(".todo_header", {
     duration: 2, // Hace la transición más lenta y fluida
     ease: "power2.out", // Suaviza la animación
     scrollTrigger: {
-        // markers:true,
 
         trigger: ".abajo",
         start: "top+=100px center",
@@ -20,7 +19,6 @@ gsap.to(".cuadrado", {
     duration: 2, // Hace la transición más lenta y fluida
     ease: "power2.out", // Suaviza la animación
     scrollTrigger: {
-        // markers:true,
 
         trigger: ".abajo",
         start: "top+=100px center",
@@ -34,7 +32,6 @@ gsap.to(".background_header",{
     y: 80, 
 
     scrollTrigger:{
-        markers:true,
         trigger:".abajo",
         start:"top+=315px center",
         end:"bottom-=30px top",
